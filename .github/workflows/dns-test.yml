@@ -13,10 +13,6 @@ jobs:
       # =========================
       # 🔹 传统 UDP/TCP DNS 查询
       # =========================
-      - name: Cloudflare DNS (1.1.1.1)
-        run: kdig @1.1.1.1 +tls h5.gantanhao.com
-      - name: Cloudflare DNS (1.1.1.1tls)
-        run: kdig tls://1.1.1.1 h5.gantanhao.com
       - name: Google DNS (8.8.8.8)
         run: kdig @8.8.8.8 h5.gantanhao.com
 
@@ -39,27 +35,29 @@ jobs:
       # =========================
       # 🔹 DNS over TLS (DoT)
       # =========================
-      - name: Cloudflare DoT
-        run: kdig --tls @1.1.1.1 h5.gantanhao.com
+      - name: Cloudflare DNS (1.1.1.1)
+        run: kdig @1.1.1.1 +tls h5.gantanhao.com
+      - name: Cloudflare DNS (1.1.1.1tls)
+        run: kdig tls://1.1.1.1 h5.gantanhao.com
 
       - name: Google DoT
-        run: kdig --tls @8.8.8.8 h5.gantanhao.com +tls-host=dns.google
+        run: kdig +tls @8.8.8.8 h5.gantanhao.com +tls-host=dns.google
 
       - name: Quad9 DoT
-        run: kdig --tls @9.9.9.9 h5.gantanhao.com +tls-host=dns.quad9.net
+        run: kdig +tls @9.9.9.9 h5.gantanhao.com +tls-host=dns.quad9.net
 
       - name: AdGuard DoT
-        run: kdig --tls @94.140.14.14 h5.gantanhao.com +tls-host=unfiltered.adguard.com
+        run: kdig +tls @94.140.14.14 h5.gantanhao.com +tls-host=unfiltered.adguard.com
 
 
       # =========================
       # 🔹 DNS over HTTPS (DoH) - 可选
       # =========================
       - name: Cloudflare DoH
-        run: kdig --https --tls-ca https://1.1.1.1/dns-query h5.gantanhao.com
+        run: kdig +https +tls-ca https://1.1.1.1/dns-query h5.gantanhao.com
 
       - name: Google DoH
-        run: kdig --https --tls-ca https://dns.google/dns-query h5.gantanhao.com
+        run: kdig +https +tls-ca https://dns.google/dns-query h5.gantanhao.com
 
       - name: Quad9 DoH
-        run: kdig --https --tls-ca https://dns.quad9.net/dns-query h5.gantanhao.com
+        run: kdig +https +tls-ca https://dns.quad9.net/dns-query h5.gantanhao.com
