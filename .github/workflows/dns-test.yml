@@ -41,7 +41,7 @@ jobs:
         run: kdig tls://1.1.1.1 h5.gantanhao.com
 
       - name: Google DNS over TLS (+tls)
-        run: kdig @8.8.8.8 +tls h5.gantanhao.com
+        run: kdig +tls @dns.google h5.gantanhao.com
 
       - name: Google DNS over TLS (tls://)
         run: kdig tls://dns.google h5.gantanhao.com
