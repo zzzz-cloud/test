@@ -31,33 +31,44 @@ jobs:
       - name: DNSPod (119.29.29.29)
         run: kdig @119.29.29.29 h5.gantanhao.com
 
-
       # =========================
       # 🔹 DNS over TLS (DoT)
       # =========================
-      - name: Cloudflare DNS (1.1.1.1)
+      - name: Cloudflare DNS over TLS (+tls)
         run: kdig @1.1.1.1 +tls h5.gantanhao.com
-      - name: Cloudflare DNS (1.1.1.1tls)
+
+      - name: Cloudflare DNS over TLS (tls://)
         run: kdig tls://1.1.1.1 h5.gantanhao.com
 
-      - name: Google DoT
-        run: kdig +tls @8.8.8.8 h5.gantanhao.com +tls-host=dns.google
+      - name: Google DNS over TLS (+tls)
+        run: kdig @8.8.8.8 +tls h5.gantanhao.com
 
-      - name: Quad9 DoT
-        run: kdig +tls @9.9.9.9 h5.gantanhao.com +tls-host=dns.quad9.net
+      - name: Google DNS over TLS (tls://)
+        run: kdig tls://dns.google h5.gantanhao.com
 
-      - name: AdGuard DoT
-        run: kdig +tls @94.140.14.14 h5.gantanhao.com +tls-host=unfiltered.adguard.com
+      - name: Quad9 DNS over TLS (+tls)
+        run: kdig @9.9.9.9 +tls h5.gantanhao.com
 
+      - name: Quad9 DNS over TLS (tls://)
+        run: kdig tls://dns.quad9.net h5.gantanhao.com
+
+      - name: AdGuard DNS over TLS (+tls)
+        run: kdig @94.140.14.14 +tls h5.gantanhao.com
+
+      - name: AdGuard DNS over TLS (tls://)
+        run: kdig tls://unfiltered.adguard-dns.com h5.gantanhao.com
 
       # =========================
-      # 🔹 DNS over HTTPS (DoH) - 可选
+      # 🔹 DNS over HTTPS (DoH)
       # =========================
       - name: Cloudflare DoH
-        run: kdig +https +tls-ca https://1.1.1.1/dns-query h5.gantanhao.com
+        run: kdig https://cloudflare-dns.com/dns-query h5.gantanhao.com
 
       - name: Google DoH
-        run: kdig +https +tls-ca https://dns.google/dns-query h5.gantanhao.com
+        run: kdig https://dns.google/dns-query h5.gantanhao.com
 
       - name: Quad9 DoH
-        run: kdig +https +tls-ca https://dns.quad9.net/dns-query h5.gantanhao.com
+        run: kdig https://dns.quad9.net/dns-query h5.gantanhao.com
+
+      - name: AdGuard DoH
+        run: kdig https://unfiltered.adguard-dns.com/dns-query h5.gantanhao.com
