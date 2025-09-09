@@ -66,8 +66,7 @@ jobs:
 
       - name: Google DoH
         run: kdig https://dns.google/dns-query h5.gantanhao.com
-      - name: Google DoH-1
-        run: kdig @https://dns.google/dns-query h5.gantanhao.com
+
       - name: Google Doh-2
         run: kdig +https=https://dns.google/dns-query h5.gantanhao.com
       - name: Google Doh-3
