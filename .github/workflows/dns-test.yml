@@ -1,0 +1,10 @@
+name: DNS Lookup
+on: [push, workflow_dispatch]  # 支持手动触发
+jobs:
+  kdig-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install kdig
+        run: sudo apt-get update && sudo apt-get install -y dnsutils knot-dnsutils
+      - name: Run kdig command
+        run: kdig h5.gantanhao.com
