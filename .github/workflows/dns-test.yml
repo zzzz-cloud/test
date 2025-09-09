@@ -13,9 +13,12 @@ jobs:
       # =========================
       # 🔹 传统 UDP/TCP DNS 查询
       # =========================
+      - name: Cloud(1.1.1.1)
+        run: kdig @1.1.1.1 h5.gantanhao.com
       - name: Google DNS (8.8.8.8)
         run: kdig @8.8.8.8 h5.gantanhao.com
-
+      - name: test
+        run: dig +dnssec qwe68.cn @8.8.8.8
       - name: Quad9 DNS (9.9.9.9)
         run: kdig @9.9.9.9 h5.gantanhao.com
 
