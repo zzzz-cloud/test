@@ -14,8 +14,9 @@ jobs:
       # 🔹 传统 UDP/TCP DNS 查询
       # =========================
       - name: Cloudflare DNS (1.1.1.1)
-        run: kdig @1.1.1.1 h5.gantanhao.com
-
+        run: kdig @1.1.1.1 +tls h5.gantanhao.com
+      - name: Cloudflare DNS (1.1.1.1tls)
+        run: kdig tls://1.1.1.1 h5.gantanhao.com
       - name: Google DNS (8.8.8.8)
         run: kdig @8.8.8.8 h5.gantanhao.com
 
