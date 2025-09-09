@@ -1,10 +1,35 @@
 name: DNS Lookup
-on: [push, workflow_dispatch]  # 支持手动触发
+on: [push, workflow_dispatch]  # 支持推送和手动触发
+
 jobs:
   kdig-test:
     runs-on: ubuntu-latest
     steps:
       - name: Install kdig
-        run: sudo apt-get update && sudo apt-get install -y dnsutils knot-dnsutils
-      - name: Run kdig command
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y knot-dnsutils
+
+      - name: Cloudflare DNS (1.1.1.1)
         run: kdig @1.1.1.1 h5.gantanhao.com
+
+      - name: Google DNS (8.8.8.8)
+        run: kdig @8.8.8.8 h5.gantanhao.com
+
+      - name: Quad9 DNS (9.9.9.9)
+        run: kdig @9.9.9.9 h5.gantanhao.com
+
+      - name: OpenDNS (208.67.222.222)
+        run: kdig @208.67.222.222 h5.gantanhao.com
+
+      - name: AdGuard DNS (94.140.14.14)
+        run: kdig @94.140.14.14 h5.gantanhao.com
+
+      - name: Alibaba DNS (223.5.5.5)
+        run: kdig @223.5.5.5 h5.gantanhao.com
+
+      - name: DNSPod (119.29.29.29)
+        run: kdig @119.29.29.29 h5.gantanhao.com
+
+      - name: Trace Full Resolution Path
+        run: kdig +trace h5.gantanhao.com
